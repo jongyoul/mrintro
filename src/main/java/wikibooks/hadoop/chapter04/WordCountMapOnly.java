@@ -24,7 +24,7 @@ public class WordCountMapOnly {
             System.err.println("Usage: WordCount <input> <output>");
             System.exit(2);
         }
-        Job job = new Job(conf, "WordCount");
+        Job job = new Job(conf, "WordCountOnlyMap");
 
         job.setJarByClass(WordCount.class);
         job.setMapperClass(WordCountMapper.class);
