@@ -47,6 +47,8 @@ public class DelayCount extends Configured implements Tool {
 		job.setOutputKeyClass(Text.class);
 		job.setOutputValueClass(IntWritable.class);
 
+        job.setNumReduceTasks(3);
+
 		job.waitForCompletion(true);
 		return 0;
 	}

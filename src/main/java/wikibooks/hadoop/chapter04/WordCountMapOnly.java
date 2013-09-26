@@ -10,13 +10,6 @@ import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 
-/**
- * Created with IntelliJ IDEA.
- * User: jl
- * Date: 9/26/13
- * Time: 5:24 PM
- * To change this template use File | Settings | File Templates.
- */
 public class WordCountMapOnly {
     public static void main(String[] args) throws Exception {
         Configuration conf = new Configuration();
