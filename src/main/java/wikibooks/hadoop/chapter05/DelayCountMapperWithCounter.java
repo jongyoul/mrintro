@@ -11,10 +11,10 @@ public class DelayCountMapperWithCounter extends
 		Mapper<LongWritable, Text, Text, IntWritable> {
 
 	private String workType;
-	// map Ãâ·Â°ª
+	// map ì¶œë ¥ê°’
 	private final static IntWritable outputValue = new IntWritable(1);
 
-	// map Ãâ·ÂÅ°
+	// map ì¶œë ¥í‚¤
 	private Text outputKey = new Text();
 
 	@Override
@@ -26,20 +26,20 @@ public class DelayCountMapperWithCounter extends
 			throws IOException, InterruptedException {
 
 		if (key.get() > 0) {
-			// ÄŞ¸¶ ±¸ºĞÀÚ ºĞ¸®
+			// ì½¤ë§ˆ êµ¬ë¶„ì ë¶„ë¦¬
 			String[] colums = value.toString().split(",");
 			if (colums != null && colums.length > 0) {
 				try {
-					// Ãâ¹ß Áö¿¬ µ¥ÀÌÅÍ Ãâ·Â
+					// ì¶œë°œ ì§€ì—° ë°ì´í„° ì¶œë ¥
 					if (workType.equals("departure")) {
-						// Ãâ¹ß Áö¿¬ µ¥ÀÌÅÍ Ãâ·Â
+						// ì¶œë°œ ì§€ì—° ë°ì´í„° ì¶œë ¥
 						if (!colums[15].equals("NA")) {
 							int depDelayTime = Integer.parseInt(colums[15]);
 							if (depDelayTime > 0) {
-								// Ãâ·ÂÅ° ¼³Á¤
+								// ì¶œë ¥í‚¤ ì„¤ì •
 								outputKey.set("D," + colums[0] + ","
 										+ colums[1]);
-								// Ãâ·Â µ¥ÀÌÅÍ »ı¼º
+								// ì¶œë ¥ ë°ì´í„° ìƒì„±
 								context.write(outputKey, outputValue);
 							} else if (depDelayTime == 0) {
 								context.getCounter(
@@ -55,15 +55,15 @@ public class DelayCountMapperWithCounter extends
 									DelayCounters.not_available_departure)
 									.increment(1);
 						}
-						// µµÂø Áö¿¬ µ¥ÀÌÅÍ Ãâ·Â
+						// ë„ì°© ì§€ì—° ë°ì´í„° ì¶œë ¥
 					} else if (workType.equals("arrival")) {
 						if (!colums[14].equals("NA")) {
 							int arrDelayTime = Integer.parseInt(colums[14]);
 							if (arrDelayTime > 0) {
-								// Ãâ·ÂÅ° ¼³Á¤
+								// ì¶œë ¥í‚¤ ì„¤ì •
 								outputKey.set("A," + colums[0] + ","
 										+ colums[1]);
-								// Ãâ·Â µ¥ÀÌÅÍ »ı¼º
+								// ì¶œë ¥ ë°ì´í„° ìƒì„±
 								context.write(outputKey, outputValue);
 							} else if (arrDelayTime == 0) {
 								context.getCounter(

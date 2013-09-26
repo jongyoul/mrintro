@@ -32,14 +32,14 @@ public class SequenceFileTotalSort extends Configured implements Tool {
 		conf.setOutputKeyClass(IntWritable.class);
 		conf.setPartitionerClass(TotalOrderPartitioner.class);
 
-		// SequenceFile ¾ĞÃà Æ÷¸Ë ¼³Á¤
+		// SequenceFile ì••ì¶• í¬ë§· ì„¤ì •
 		SequenceFileOutputFormat.setCompressOutput(conf, true);
 		SequenceFileOutputFormat
 				.setOutputCompressorClass(conf, GzipCodec.class);
 		SequenceFileOutputFormat.setOutputCompressionType(conf,
 				CompressionType.BLOCK);
 
-		// ÀÔÃâ·Â °æ·Î ¼³Á¤
+		// ì…ì¶œë ¥ ê²½ë¡œ ì„¤ì •
 		FileInputFormat.setInputPaths(conf, new Path(args[0]));
 		FileOutputFormat.setOutputPath(conf, new Path(args[1]));
 
@@ -48,7 +48,7 @@ public class SequenceFileTotalSort extends Configured implements Tool {
 		Path partitionFile = new Path(inputDir, "_partitions");
 		TotalOrderPartitioner.setPartitionFile(conf, partitionFile);
 
-		// »ùÇÃ µ¥ÀÌÅÍ ÃßÃâ
+		// ìƒ˜í”Œ ë°ì´í„° ì¶”ì¶œ
 		InputSampler.Sampler<IntWritable, Text> sampler = new InputSampler.RandomSampler<IntWritable, Text>(
 				0.1, 1000, 10);
 		InputSampler.writePartitionFile(conf, sampler);

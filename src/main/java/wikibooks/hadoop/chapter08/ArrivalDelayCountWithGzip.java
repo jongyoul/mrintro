@@ -18,42 +18,42 @@ import wikibooks.hadoop.chapter05.DelayCountReducer;
 public class ArrivalDelayCountWithGzip {
 	public static void main(String[] args) throws Exception {
 		Configuration conf = new Configuration();
-		// Map Ãâ·Â ¾ĞÃà ¼³Á¤
+		// Map ì¶œë ¥ ì••ì¶• ì„¤ì •
 		conf.setBoolean("mapred.compress.map.output", true);
 		conf.set("mapred.map.output.compression.codec",
 				"org.apache.hadoop.io.compress.GzipCodec");
 
-		// ÀÔ·ÂÃâ µ¥ÀÌÅÍ °æ·Î È®ÀÎ
+		// ì…ë ¥ì¶œ ë°ì´í„° ê²½ë¡œ í™•ì¸
 		if (args.length != 2) {
 			System.err
 					.println("Usage: ArrivalDelayCountWithGzip <input> <output>");
 			System.exit(2);
 		}
-		// Job ÀÌ¸§ ¼³Á¤
+		// Job ì´ë¦„ ì„¤ì •
 		Job job = new Job(conf, "ArrivalDelayCountWithGzip");
 
-		// ÀÔÃâ·Â µ¥ÀÌÅÍ °æ·Î ¼³Á¤
+		// ì…ì¶œë ¥ ë°ì´í„° ê²½ë¡œ ì„¤ì •
 		FileInputFormat.addInputPath(job, new Path(args[0]));
 		FileOutputFormat.setOutputPath(job, new Path(args[1]));
 
-		// Job Å¬·¡½º ¼³Á¤
+		// Job í´ë˜ìŠ¤ ì„¤ì •
 		job.setJarByClass(ArrivalDelayCountWithGzip.class);
-		// Mapper Å¬·¡½º ¼³Á¤
+		// Mapper í´ë˜ìŠ¤ ì„¤ì •
 		job.setMapperClass(ArrivalDelayCountMapper.class);
-		// Reducer Å¬·¡½º ¼³Á¤
+		// Reducer í´ë˜ìŠ¤ ì„¤ì •
 		job.setReducerClass(DelayCountReducer.class);
 
-		// ÀÔÃâ·Â µ¥ÀÌÅÍ Æ÷¸Ë ¼³Á¤
+		// ì…ì¶œë ¥ ë°ì´í„° í¬ë§· ì„¤ì •
 		job.setInputFormatClass(TextInputFormat.class);
 		job.setOutputFormatClass(SequenceFileOutputFormat.class);
 
-		// ½ÃÄö½º ÆÄÀÏ ¼³Á¤
+		// ì‹œí€€ìŠ¤ íŒŒì¼ ì„¤ì •
 		SequenceFileOutputFormat.setCompressOutput(job, true);
 		SequenceFileOutputFormat.setOutputCompressorClass(job, GzipCodec.class);
 		SequenceFileOutputFormat.setOutputCompressionType(job,
 				CompressionType.BLOCK);
 
-		// Ãâ·ÂÅ° ¹× Ãâ·Â°ª À¯Çü ¼³Á¤
+		// ì¶œë ¥í‚¤ ë° ì¶œë ¥ê°’ ìœ í˜• ì„¤ì •
 		job.setOutputKeyClass(Text.class);
 		job.setOutputValueClass(IntWritable.class);
 

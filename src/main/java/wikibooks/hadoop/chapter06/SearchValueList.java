@@ -20,28 +20,28 @@ public class SearchValueList extends Configured implements Tool {
 		Path path = new Path(args[0]);
 		FileSystem fs = path.getFileSystem(getConf());
 
-		// MapFile Á¶È¸
+		// MapFile ì¡°íšŒ
 		Reader[] readers = MapFileOutputFormat.getReaders(fs, path, getConf());
 
-		// °Ë»ö Å°¸¦ ÀúÀåÇÒ °´Ã¼¸¦ ¼±¾ğ
+		// ê²€ìƒ‰ í‚¤ë¥¼ ì €ì¥í•  ê°ì²´ë¥¼ ì„ ì–¸
 		IntWritable key = new IntWritable();
 		key.set(Integer.parseInt(args[1]));
 
-		// °Ë»ö °ªÀ» ÀúÀåÇÒ °´Ã¼¸¦ ¼±¾ğ
+		// ê²€ìƒ‰ ê°’ì„ ì €ì¥í•  ê°ì²´ë¥¼ ì„ ì–¸
 		Text value = new Text();
 
-		// ÆÄÆ¼¼Å³Ê¸¦ ÀÌ¿ëÇØ, °Ë»ö Å°°¡ ÀúÀåµÈ MapFile Á¶È¸
+		// íŒŒí‹°ì…”ë„ˆë¥¼ ì´ìš©í•´, ê²€ìƒ‰ í‚¤ê°€ ì €ì¥ëœ MapFile ì¡°íšŒ
 		Partitioner<IntWritable, Text> partitioner = new HashPartitioner<IntWritable, Text>();
 		Reader reader = readers[partitioner.getPartition(key, value,
 				readers.length)];
 
-		// °Ë»ö °á°ú È®ÀÎ
+		// ê²€ìƒ‰ ê²°ê³¼ í™•ì¸
 		Writable entry = reader.get(key, value);
 		if (entry == null) {
 			System.out.println("The requested key was not found.");
 		}
 
-		// MapFileÀ» ¼øÈ¸ÇÏ¸ç Å°¿Í °ªÀ» Ãâ·Â
+		// MapFileì„ ìˆœíšŒí•˜ë©° í‚¤ì™€ ê°’ì„ ì¶œë ¥
 		IntWritable nextKey = new IntWritable();
 		do {
 			System.out.println(value.toString());

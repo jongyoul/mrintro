@@ -17,31 +17,31 @@ public class DepartureDelayCount {
 	public static void main(String[] args) throws Exception {
 		Configuration conf = new Configuration();
 
-		// ÀÔ·ÂÃâ µ¥ÀÌÅÍ °æ·Î È®ÀÎ
+		// ì…ë ¥ì¶œ ë°ì´í„° ê²½ë¡œ í™•ì¸
 		if (args.length != 2) {
 			System.err.println("Usage: DepartureDelayCount <input> <output>");
 			System.exit(2);
 		}
 		conf.set("mapred.job.queue.name", "queueA");
-		// Job ÀÌ¸§ ¼³Á¤
+		// Job ì´ë¦„ ì„¤ì •
 		Job job = new Job(conf, "DepartureDelayCount");
 
-		// ÀÔÃâ·Â µ¥ÀÌÅÍ °æ·Î ¼³Á¤
+		// ì…ì¶œë ¥ ë°ì´í„° ê²½ë¡œ ì„¤ì •
 		FileInputFormat.addInputPath(job, new Path(args[0]));
 		FileOutputFormat.setOutputPath(job, new Path(args[1]));
 
-		// Job Å¬·¡½º ¼³Á¤
+		// Job í´ë˜ìŠ¤ ì„¤ì •
 		job.setJarByClass(DepartureDelayCount.class);
-		// Mapper Å¬·¡½º ¼³Á¤
+		// Mapper í´ë˜ìŠ¤ ì„¤ì •
 		job.setMapperClass(DepartureDelayCountMapper.class);
-		// Reducer Å¬·¡½º ¼³Á¤
+		// Reducer í´ë˜ìŠ¤ ì„¤ì •
 		job.setReducerClass(DelayCountReducer.class);
 
-		// ÀÔÃâ·Â µ¥ÀÌÅÍ Æ÷¸Ë ¼³Á¤
+		// ì…ì¶œë ¥ ë°ì´í„° í¬ë§· ì„¤ì •
 		job.setInputFormatClass(TextInputFormat.class);
 		job.setOutputFormatClass(TextOutputFormat.class);
 
-		// Ãâ·ÂÅ° ¹× Ãâ·Â°ª À¯Çü ¼³Á¤
+		// ì¶œë ¥í‚¤ ë° ì¶œë ¥ê°’ ìœ í˜• ì„¤ì •
 		job.setOutputKeyClass(Text.class);
 		job.setOutputValueClass(IntWritable.class);
 

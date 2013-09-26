@@ -7,20 +7,20 @@ import org.apache.hadoop.mapreduce.Reducer;
 
 public class ReducerWithReducesideJoin extends Reducer<Text, Text, Text, Text> {
 
-	// reduce Ãâ·ÂÅ°
+	// reduce ì¶œë ¥í‚¤
 	private Text outputKey = new Text();
 	private Text outputValue = new Text();
 
 	public void reduce(Text key, Iterable<Text> values, Context context)
 			throws IOException, InterruptedException {
-		// ÅÂ±× Á¶È¸
+		// íƒœê·¸ ì¡°íšŒ
 		String tagValue = key.toString().split("_")[1];
 
 		for (Text value : values) {
-			// Ãâ·ÂÅ° ¼³Á¤
+			// ì¶œë ¥í‚¤ ì„¤ì •
 			if (tagValue.equals(CarrierCodeMapper.DATA_TAG)) {
 				outputKey.set(value);
-				// Ãâ·Â°ª ¼³Á¤ ¹× Ãâ·Â µ¥ÀÌÅÍ »ı¼º
+				// ì¶œë ¥ê°’ ì„¤ì • ë° ì¶œë ¥ ë°ì´í„° ìƒì„±
 			} else if (tagValue.equals(MapperWithReducesideJoin.DATA_TAG)) {
 				outputValue.set(value);
 				context.write(outputKey, outputValue);

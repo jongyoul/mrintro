@@ -23,12 +23,12 @@ public class WordCount extends Configured implements Tool {
 		String[] otherArgs = new GenericOptionsParser(getConf(), args)
 				.getRemainingArgs();
 
-		// ÀÔ·ÂÃâ µ¥ÀÌÅÍ °æ·Î È®ÀÎ
+		// ì…ë ¥ì¶œ ë°ì´í„° ê²½ë¡œ í™•ì¸
 		if (otherArgs.length != 2) {
 			System.err.println("Usage: WordCount <in> <out>");
 			System.exit(2);
 		}
-		// Job ÀÌ¸§ ¼³Á¤
+		// Job ì´ë¦„ ì„¤ì •
 		Job job = new Job(getConf(), "WordCount");
 
 		job.setJarByClass(WordCount.class);
@@ -49,7 +49,7 @@ public class WordCount extends Configured implements Tool {
 	}
 
 	public static void main(String[] args) throws Exception {
-		// Tool ÀÎÅÍÆäÀÌ½º ½ÇÇà
+		// Tool ì¸í„°í˜ì´ìŠ¤ ì‹¤í–‰
 		int res = ToolRunner.run(new Configuration(), new WordCount(), args);
 		System.out.println("## RESULT:" + res);
 	}

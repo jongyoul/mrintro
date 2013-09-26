@@ -22,18 +22,18 @@ public class MapFileCreator extends Configured implements Tool {
 		JobConf conf = new JobConf(MapFileCreator.class);
 		conf.setJobName("MapFileCreator");
 
-		// ÀÔÃâ·Â °æ·Î ¼³Á¤
+		// ì…ì¶œë ¥ ê²½ë¡œ ì„¤ì •
 		FileInputFormat.setInputPaths(conf, new Path(args[0]));
 		FileOutputFormat.setOutputPath(conf, new Path(args[1]));
 
-		// ÀÔ·Â µ¥ÀÌÅÍ¸¦ SequenceFile·Î ¼³Á¤
+		// ì…ë ¥ ë°ì´í„°ë¥¼ SequenceFileë¡œ ì„¤ì •
 		conf.setInputFormat(SequenceFileInputFormat.class);
-		// Ãâ·Â µ¥ÀÌÅÍ¸¦ MapFile·Î ¼³Á¤
+		// ì¶œë ¥ ë°ì´í„°ë¥¼ MapFileë¡œ ì„¤ì •
 		conf.setOutputFormat(MapFileOutputFormat.class);
-		// Ãâ·Â µ¥ÀÌÅÍÀÇ Å°¸¦ Ç×°ø ¿îÇ× °Å¸®(IntWrtiable)·Î ¼³Á¤
+		// ì¶œë ¥ ë°ì´í„°ì˜ í‚¤ë¥¼ í•­ê³µ ìš´í•­ ê±°ë¦¬(IntWrtiable)ë¡œ ì„¤ì •
 		conf.setOutputKeyClass(IntWritable.class);
 
-		// ½ÃÄö½ºÆÄÀÏ ¾ĞÃà Æ÷¸Ë ¼³Á¤
+		// ì‹œí€€ìŠ¤íŒŒì¼ ì••ì¶• í¬ë§· ì„¤ì •
 		SequenceFileOutputFormat.setCompressOutput(conf, true);
 		SequenceFileOutputFormat
 				.setOutputCompressorClass(conf, GzipCodec.class);

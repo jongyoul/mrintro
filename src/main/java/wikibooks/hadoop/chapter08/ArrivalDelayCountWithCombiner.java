@@ -16,32 +16,32 @@ import wikibooks.hadoop.chapter05.DelayCountReducer;
 public class ArrivalDelayCountWithCombiner {
 	public static void main(String[] args) throws Exception {
 		Configuration conf = new Configuration();
-		//ÀÔÃâ·Â µ¥ÀÌÅÍ °æ·Î È®ÀÎ
+		//ì…ì¶œë ¥ ë°ì´í„° ê²½ë¡œ í™•ì¸
 		if (args.length != 2) {
 			System.err.println("Usage: ArrivalDelayCountWithCombiner <input> <output>");
 			System.exit(2);
 		}
-		//Job ÀÌ¸§ ¼³Á¤
+		//Job ì´ë¦„ ì„¤ì •
 		Job job = new Job(conf, "ArrivalDelayCountWithCombiner");
 
-		//ÀÔÃâ·Â µ¥ÀÌÅÍ °æ·Î ¼³Á¤
+		//ì…ì¶œë ¥ ë°ì´í„° ê²½ë¡œ ì„¤ì •
 		FileInputFormat.addInputPath(job, new Path(args[0]));
 		FileOutputFormat.setOutputPath(job, new Path(args[1]));
 
-		//Job Å¬·¡½º ¼³Á¤
+		//Job í´ë˜ìŠ¤ ì„¤ì •
 		job.setJarByClass(ArrivalDelayCountWithCombiner.class);
-		//Mapper Å¬·¡½º ¼³Á¤
+		//Mapper í´ë˜ìŠ¤ ì„¤ì •
 		job.setMapperClass(ArrivalDelayCountMapper.class);
-		//Reducer Å¬·¡½º ¼³Á¤
+		//Reducer í´ë˜ìŠ¤ ì„¤ì •
 		job.setReducerClass(DelayCountReducer.class);
-		//ÄŞ¹ÙÀÌ³Ê Å¬·¡½º ¼³Á¤
+		//ì½¤ë°”ì´ë„ˆ í´ë˜ìŠ¤ ì„¤ì •
 		job.setCombinerClass(DelayCountReducer.class);
 
-		//ÀÔÃâ·Â µ¥ÀÌÅÍ Æ÷¸Ë ¼³Á¤
+		//ì…ì¶œë ¥ ë°ì´í„° í¬ë§· ì„¤ì •
 		job.setInputFormatClass(TextInputFormat.class);
 		job.setOutputFormatClass(TextOutputFormat.class);
 
-		//Ãâ·ÂÅ° ¹× Ãâ·Â°ª À¯Çü ¼³Á¤
+		//ì¶œë ¥í‚¤ ë° ì¶œë ¥ê°’ ìœ í˜• ì„¤ì •
 		job.setOutputKeyClass(Text.class);
 		job.setOutputValueClass(IntWritable.class);
 

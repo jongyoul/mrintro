@@ -18,32 +18,32 @@ public class ReducesideJoin extends Configured implements Tool {
 	public int run(String[] args) throws Exception {
 		String[] otherArgs = new GenericOptionsParser(getConf(), args)
 				.getRemainingArgs();
-		// ÀÔ·ÂÃâ µ¥ÀÌÅÍ °æ·Î È®ÀÎ
+		// ì…ë ¥ì¶œ ë°ì´í„° ê²½ë¡œ í™•ì¸
 		if (otherArgs.length != 3) {
 			System.err.println("Usage: ReducesideJoin <metadata> <in> <out>");
 			System.exit(2);
 		}
 
-		// Job ÀÌ¸§ ¼³Á¤
+		// Job ì´ë¦„ ì„¤ì •
 		Job job = new Job(getConf(), "ReducesideJoin");
 
-		// Ãâ·Â µ¥ÀÌÅÍ °æ·Î ¼³Á¤
+		// ì¶œë ¥ ë°ì´í„° ê²½ë¡œ ì„¤ì •
 		FileOutputFormat.setOutputPath(job, new Path(otherArgs[2]));
 
-		// Job Å¬·¡½º ¼³Á¤
+		// Job í´ë˜ìŠ¤ ì„¤ì •
 		job.setJarByClass(ReducesideJoin.class);
-		// Reducer ¼³Á¤
+		// Reducer ì„¤ì •
 		job.setReducerClass(ReducerWithReducesideJoin.class);
 
-		// ÀÔÃâ·Â µ¥ÀÌÅÍ Æ÷¸Ë ¼³Á¤
+		// ì…ì¶œë ¥ ë°ì´í„° í¬ë§· ì„¤ì •
 		job.setInputFormatClass(TextInputFormat.class);
 		job.setOutputFormatClass(TextOutputFormat.class);
 
-		// Ãâ·ÂÅ° ¹× Ãâ·Â°ª À¯Çü ¼³Á¤
+		// ì¶œë ¥í‚¤ ë° ì¶œë ¥ê°’ ìœ í˜• ì„¤ì •
 		job.setOutputKeyClass(Text.class);
 		job.setOutputValueClass(Text.class);
 
-		// MultipleInputs ¼³Á¤
+		// MultipleInputs ì„¤ì •
 		MultipleInputs.addInputPath(job, new Path(otherArgs[0]),
 				TextInputFormat.class, CarrierCodeMapper.class);
 		MultipleInputs.addInputPath(job, new Path(otherArgs[1]),
@@ -54,7 +54,7 @@ public class ReducesideJoin extends Configured implements Tool {
 	}
 
 	public static void main(String[] args) throws Exception {
-		// Tool ÀÎÅÍÆäÀÌ½º ½ÇÇà
+		// Tool ì¸í„°í˜ì´ìŠ¤ ì‹¤í–‰
 		int res = ToolRunner.run(new Configuration(), new ReducesideJoin(),
 				args);
 		System.out.println("## RESULT:" + res);

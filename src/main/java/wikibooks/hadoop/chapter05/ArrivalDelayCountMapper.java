@@ -10,25 +10,25 @@ import org.apache.hadoop.mapreduce.Mapper;
 public class ArrivalDelayCountMapper extends
 		Mapper<LongWritable, Text, Text, IntWritable> {
 
-	// map Ãâ·Â°ª
+	// map ì¶œë ¥ê°’
 	private final static IntWritable outputValue = new IntWritable(1);
-	// map Ãâ·ÂÅ°
+	// map ì¶œë ¥í‚¤
 	private Text outputKey = new Text();
 
 	public void map(LongWritable key, Text value, Context context)
 			throws IOException, InterruptedException {
 
 		if (key.get() > 0) {
-			// ÄŞ¸¶ ±¸ºĞÀÚ ºĞ¸®
+			// ì½¤ë§ˆ êµ¬ë¶„ì ë¶„ë¦¬
 			String[] colums = value.toString().split(",");
 			if (colums != null && colums.length > 0) {
 				try {
-					// Ãâ·ÂÅ° ¼³Á¤
+					// ì¶œë ¥í‚¤ ì„¤ì •
 					outputKey.set(colums[0] + "," + colums[1]);
 					if (!colums[14].equals("NA")) {
 						int arrDelayTime = Integer.parseInt(colums[14]);
 						if (arrDelayTime > 0) {
-							// Ãâ·Â µ¥ÀÌÅÍ »ı¼º
+							// ì¶œë ¥ ë°ì´í„° ìƒì„±
 							context.write(outputKey, outputValue);
 						}
 					}

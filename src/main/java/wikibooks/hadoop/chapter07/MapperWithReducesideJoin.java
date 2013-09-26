@@ -9,17 +9,17 @@ import org.apache.hadoop.mapreduce.Mapper;
 public class MapperWithReducesideJoin extends
 		Mapper<LongWritable, Text, Text, Text> {
 
-	// ÅÂ±× ¼±¾ð
+	// íƒœê·¸ ì„ ì–¸
 	public final static String DATA_TAG = "B";
 
-	// map Ãâ·ÂÅ°
+	// map ì¶œë ¥í‚¤
 	private Text outputKey = new Text();
 
 	public void map(LongWritable key, Text value, Context context)
 			throws IOException, InterruptedException {
 
 		if (key.get() > 0) {
-			// ÄÞ¸¶ ±¸ºÐÀÚ ºÐ¸®
+			// ì½¤ë§ˆ êµ¬ë¶„ìž ë¶„ë¦¬
 			String[] colums = value.toString().split(",");
 			if (colums != null && colums.length > 0) {
 				try {

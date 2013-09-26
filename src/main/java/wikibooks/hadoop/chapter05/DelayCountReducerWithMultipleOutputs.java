@@ -12,10 +12,10 @@ public class DelayCountReducerWithMultipleOutputs extends
 
 	private MultipleOutputs<Text, IntWritable> mos;
 
-	// reduce Ãâ·ÂÅ°
+	// reduce ì¶œë ¥í‚¤
 	private Text outputKey = new Text();
 
-	// reduce Ãâ·Â°ª
+	// reduce ì¶œë ¥ê°’
 	private IntWritable result = new IntWritable();
 
 	@Override
@@ -25,33 +25,33 @@ public class DelayCountReducerWithMultipleOutputs extends
 
 	public void reduce(Text key, Iterable<IntWritable> values, Context context)
 			throws IOException, InterruptedException {
-		// ÄŞ¸¶ ±¸ºĞÀÚ ºĞ¸®
+		// ì½¤ë§ˆ êµ¬ë¶„ì ë¶„ë¦¬
 		String[] colums = key.toString().split(",");
 
-		// Ãâ·ÂÅ° ¼³Á¤
+		// ì¶œë ¥í‚¤ ì„¤ì •
 		outputKey.set(colums[1] + "," + colums[2]);
 
-		// Ãâ¹ß Áö¿¬
+		// ì¶œë°œ ì§€ì—°
 		if (colums[0].equals("D")) {
-			// Áö¿¬È½¼ö ÇÕ»ê
+			// ì§€ì—°íšŸìˆ˜ í•©ì‚°
 			int sum = 0;
 			for (IntWritable value : values) {
 				sum += value.get();
 			}
-			// Ãâ·Â°ª ¼³Á¤
+			// ì¶œë ¥ê°’ ì„¤ì •
 			result.set(sum);
-			// Ãâ·Â µ¥ÀÌÅÍ »ı¼º
+			// ì¶œë ¥ ë°ì´í„° ìƒì„±
 			mos.write("departure", outputKey, result);
-			// µµÂø Áö¿¬
+			// ë„ì°© ì§€ì—°
 		} else {
-			// Áö¿¬È½¼ö ÇÕ»ê
+			// ì§€ì—°íšŸìˆ˜ í•©ì‚°
 			int sum = 0;
 			for (IntWritable value : values) {
 				sum += value.get();
 			}
-			// Ãâ·Â°ª ¼³Á¤
+			// ì¶œë ¥ê°’ ì„¤ì •
 			result.set(sum);
-			// Ãâ·Â µ¥ÀÌÅÍ »ı¼º
+			// ì¶œë ¥ ë°ì´í„° ìƒì„±
 			mos.write("arrival", outputKey, result);
 		}
 	}

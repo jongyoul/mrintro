@@ -12,29 +12,29 @@ import wikibooks.hadoop.chapter05.DelayCounters;
 public class DelayCountMapperWithDateKey extends
 		Mapper<LongWritable, Text, DateKey, IntWritable> {
 
-	// map Ãâ·Â°ª
+	// map ì¶œë ¥ê°’
 	private final static IntWritable outputValue = new IntWritable(1);
 
-	// map Ãâ·ÂÅ°
+	// map ì¶œë ¥í‚¤
 	private DateKey outputKey = new DateKey();
 
 	public void map(LongWritable key, Text value, Context context)
 			throws IOException, InterruptedException {
 
 		if (key.get() > 0) {
-			// ÄŞ¸¶ ±¸ºĞÀÚ ºĞ¸®
+			// ì½¤ë§ˆ êµ¬ë¶„ì ë¶„ë¦¬
 			String[] colums = value.toString().split(",");
 			if (colums != null && colums.length > 0) {
 				try {
-					// Ãâ¹ß Áö¿¬ µ¥ÀÌÅÍ Ãâ·Â
+					// ì¶œë°œ ì§€ì—° ë°ì´í„° ì¶œë ¥
 					if (!colums[15].equals("NA")) {
 						int depDelayTime = Integer.parseInt(colums[15]);
 						if (depDelayTime > 0) {
-							// Ãâ·ÂÅ° ¼³Á¤
+							// ì¶œë ¥í‚¤ ì„¤ì •
 							outputKey.setYear("D," + colums[0]);
 							outputKey.setMonth(new Integer(colums[1]));
 
-							// Ãâ·Â µ¥ÀÌÅÍ »ı¼º
+							// ì¶œë ¥ ë°ì´í„° ìƒì„±
 							context.write(outputKey, outputValue);
 						} else if (depDelayTime == 0) {
 							context.getCounter(
@@ -50,15 +50,15 @@ public class DelayCountMapperWithDateKey extends
 								.increment(1);
 					}
 
-					// µµÂø Áö¿¬ µ¥ÀÌÅÍ Ãâ·Â
+					// ë„ì°© ì§€ì—° ë°ì´í„° ì¶œë ¥
 					if (!colums[14].equals("NA")) {
 						int arrDelayTime = Integer.parseInt(colums[14]);
 						if (arrDelayTime > 0) {
-							// Ãâ·ÂÅ° ¼³Á¤
+							// ì¶œë ¥í‚¤ ì„¤ì •
 							outputKey.setYear("A," + colums[0]);
 							outputKey.setMonth(new Integer(colums[1]));
 
-							// Ãâ·Â µ¥ÀÌÅÍ »ı¼º
+							// ì¶œë ¥ ë°ì´í„° ìƒì„±
 							context.write(outputKey, outputValue);
 						} else if (arrDelayTime == 0) {
 							context.getCounter(DelayCounters.scheduled_arrival)

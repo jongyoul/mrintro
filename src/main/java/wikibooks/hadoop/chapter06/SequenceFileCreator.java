@@ -62,18 +62,18 @@ public class SequenceFileCreator extends Configured implements Tool {
 		conf.setMapperClass(DistanceMapper.class);
 		conf.setNumReduceTasks(0);
 
-		// ÀÔÃâ·Â °æ·Î ¼³Á¤
+		// ì…ì¶œë ¥ ê²½ë¡œ ì„¤ì •
 		FileInputFormat.setInputPaths(conf, new Path(args[0]));
 		FileOutputFormat.setOutputPath(conf, new Path(args[1]));
 
-		// Ãâ·Â Æ÷¸ËÀ» SequenceFile·Î ¼³Á¤
+		// ì¶œë ¥ í¬ë§·ì„ SequenceFileë¡œ ì„¤ì •
 		conf.setOutputFormat(SequenceFileOutputFormat.class);
-		// Ãâ·Â Å°¸¦ Ç×°ø ¿îÇ× °Å¸®(IntWritable)·Î ¼³Á¤
+		// ì¶œë ¥ í‚¤ë¥¼ í•­ê³µ ìš´í•­ ê±°ë¦¬(IntWritable)ë¡œ ì„¤ì •
 		conf.setOutputKeyClass(IntWritable.class);
-		// Ãâ·Â °ªÀ» ¶óÀÎ(Text)À¸·Î ¼³Á¤
+		// ì¶œë ¥ ê°’ì„ ë¼ì¸(Text)ìœ¼ë¡œ ì„¤ì •
 		conf.setOutputValueClass(Text.class);
 
-		// ½ÃÄö½ºÆÄÀÏ ¾ĞÃà Æ÷¸Ë ¼³Á¤
+		// ì‹œí€€ìŠ¤íŒŒì¼ ì••ì¶• í¬ë§· ì„¤ì •
 		SequenceFileOutputFormat.setCompressOutput(conf, true);
 		SequenceFileOutputFormat
 				.setOutputCompressorClass(conf, GzipCodec.class);

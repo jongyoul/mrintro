@@ -11,17 +11,17 @@ public class DateKeyComparator extends WritableComparator {
 	@SuppressWarnings("rawtypes")
 	@Override
 	public int compare(WritableComparable w1, WritableComparable w2) {
-		// º¹ÇÕÅ° Å¬·¡½º Ä³½ºÆÃ
+		// ë³µí•©í‚¤ í´ë˜ìŠ¤ ìºìŠ¤íŒ…
 		DateKey k1 = (DateKey) w1;
 		DateKey k2 = (DateKey) w2;
 
-		// ¿¬µµ ºñ±³
+		// ì—°ë„ ë¹„êµ
 		int cmp = k1.getYear().compareTo(k2.getYear());
 		if (cmp != 0) {
 			return cmp;
 		}
 
-		// ¿ù ºñ±³
+		// ì›” ë¹„êµ
 		return k1.getMonth() == k2.getMonth() ? 0 : (k1.getMonth() < k2
 				.getMonth() ? -1 : 1);
 	}

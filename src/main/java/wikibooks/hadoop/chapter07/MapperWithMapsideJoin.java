@@ -16,16 +16,16 @@ public class MapperWithMapsideJoin extends
 
 	private Hashtable<String, String> joinMap = new Hashtable<String, String>();
 
-	// map Ãâ·ÂÅ°
+	// map ì¶œë ¥í‚¤
 	private Text outputKey = new Text();
 
 	@Override
 	public void setup(Context context) throws IOException, InterruptedException {
 		try {
-			// ºÐ»êÄ³½Ã Á¶È¸
+			// ë¶„ì‚°ìºì‹œ ì¡°íšŒ
 			Path[] cacheFiles = DistributedCache.getLocalCacheFiles(context
 					.getConfiguration());
-			// Á¶ÀÎ µ¥ÀÌÅÍ »ý¼º
+			// ì¡°ì¸ ë°ì´í„° ìƒì„±
 			if (cacheFiles != null && cacheFiles.length > 0) {
 				String line;
 				String[] tokens;
@@ -52,7 +52,7 @@ public class MapperWithMapsideJoin extends
 			throws IOException, InterruptedException {
 
 		if (key.get() > 0) {
-			// ÄÞ¸¶ ±¸ºÐÀÚ ºÐ¸®
+			// ì½¤ë§ˆ êµ¬ë¶„ìž ë¶„ë¦¬
 			String[] colums = value.toString().split(",");
 			if (colums != null && colums.length > 0) {
 				try {

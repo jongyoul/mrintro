@@ -20,41 +20,41 @@ public class DelayCountWithDateKey extends Configured implements Tool {
 		String[] otherArgs = new GenericOptionsParser(getConf(), args)
 				.getRemainingArgs();
 
-		// ÀÔÃâ·Â µ¥ÀÌÅÍ °æ·Î È®ÀÎ
+		// ì…ì¶œë ¥ ë°ì´í„° ê²½ë¡œ í™•ì¸
 		if (otherArgs.length != 2) {
 			System.err.println("Usage: DelayCountWithDateKey <in> <out>");
 			System.exit(2);
 		}
-		// Job ÀÌ¸§ ¼³Á¤
+		// Job ì´ë¦„ ì„¤ì •
 		Job job = new Job(getConf(), "DelayCountWithDateKey");
 
-		// ÀÔÃâ·Â µ¥ÀÌÅÍ °æ·Î ¼³Á¤
+		// ì…ì¶œë ¥ ë°ì´í„° ê²½ë¡œ ì„¤ì •
 		FileInputFormat.addInputPath(job, new Path(otherArgs[0]));
 		FileOutputFormat.setOutputPath(job, new Path(otherArgs[1]));
 
-		// Job Å¬·¡½º ¼³Á¤
+		// Job í´ë˜ìŠ¤ ì„¤ì •
 		job.setJarByClass(DelayCountWithDateKey.class);
 		job.setPartitionerClass(GroupKeyPartitioner.class);
 		job.setGroupingComparatorClass(GroupKeyComparator.class);
 		job.setSortComparatorClass(DateKeyComparator.class);
 
-		// Mapper Å¬·¡½º ¼³Á¤
+		// Mapper í´ë˜ìŠ¤ ì„¤ì •
 		job.setMapperClass(DelayCountMapperWithDateKey.class);
-		// Reducer Å¬·¡½º ¼³Á¤
+		// Reducer í´ë˜ìŠ¤ ì„¤ì •
 		job.setReducerClass(DelayCountReducerWithDateKey.class);
 
 		job.setMapOutputKeyClass(DateKey.class);
 		job.setMapOutputValueClass(IntWritable.class);
 
-		// ÀÔÃâ·Â µ¥ÀÌÅÍ Æ÷¸Ë ¼³Á¤
+		// ì…ì¶œë ¥ ë°ì´í„° í¬ë§· ì„¤ì •
 		job.setInputFormatClass(TextInputFormat.class);
 		job.setOutputFormatClass(TextOutputFormat.class);
 
-		// Ãâ·ÂÅ° ¹× Ãâ·Â°ª À¯Çü ¼³Á¤
+		// ì¶œë ¥í‚¤ ë° ì¶œë ¥ê°’ ìœ í˜• ì„¤ì •
 		job.setOutputKeyClass(DateKey.class);
 		job.setOutputValueClass(IntWritable.class);
 
-		// MultipleOutputs ¼³Á¤
+		// MultipleOutputs ì„¤ì •
 		MultipleOutputs.addNamedOutput(job, "departure",
 				TextOutputFormat.class, DateKey.class, IntWritable.class);
 		MultipleOutputs.addNamedOutput(job, "arrival", TextOutputFormat.class,
@@ -65,7 +65,7 @@ public class DelayCountWithDateKey extends Configured implements Tool {
 	}
 
 	public static void main(String[] args) throws Exception {
-		// Tool ÀÎÅÍÆäÀÌ½º ½ÇÇà
+		// Tool ì¸í„°í˜ì´ìŠ¤ ì‹¤í–‰
 		int res = ToolRunner.run(new Configuration(),
 				new DelayCountWithDateKey(), args);
 		System.out.println("## RESULT:" + res);

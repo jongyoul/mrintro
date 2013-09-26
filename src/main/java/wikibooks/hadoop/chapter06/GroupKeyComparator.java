@@ -15,7 +15,7 @@ public class GroupKeyComparator extends WritableComparator {
 		DateKey k1 = (DateKey) w1;
 		DateKey k2 = (DateKey) w2;
 
-		// ¿¬µµ°ª ºñ±³
+		// ì—°ë„ê°’ ë¹„êµ
 		return k1.getYear().compareTo(k2.getYear());
 	}
 }

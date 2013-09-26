@@ -11,10 +11,10 @@ public class DelayCountReducerWithDateKey extends
 
 	private MultipleOutputs<DateKey, IntWritable> mos;
 
-	// reduce Ãâ·ÂÅ°
+	// reduce ì¶œë ¥í‚¤
 	private DateKey outputKey = new DateKey();
 
-	// reduce Ãâ·Â°ª
+	// reduce ì¶œë ¥ê°’
 	private IntWritable result = new IntWritable();
 
 	@Override
@@ -24,7 +24,7 @@ public class DelayCountReducerWithDateKey extends
 
 	public void reduce(DateKey key, Iterable<IntWritable> values,
 			Context context) throws IOException, InterruptedException {
-		// ÄŞ¸¶ ±¸ºĞÀÚ ºĞ¸®
+		// ì½¤ë§ˆ êµ¬ë¶„ì ë¶„ë¦¬
 		String[] colums = key.getYear().split(",");
 
 		int sum = 0;

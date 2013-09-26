@@ -7,7 +7,7 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 
 public class CarrierCodeMapper extends Mapper<LongWritable, Text, Text, Text> {
-	// ÅÂ±× ¼±¾ð
+	// íƒœê·¸ ì„ ì–¸
 	public final static String DATA_TAG = "A";
 
 	private Text outputKey = new Text();

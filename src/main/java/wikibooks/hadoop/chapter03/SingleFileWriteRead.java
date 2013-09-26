@@ -8,7 +8,7 @@ import org.apache.hadoop.fs.Path;
 
 public class SingleFileWriteRead {
 	public static void main(String[] args) {
-		// ÀÔ·Â ÆÄ¶ó¹ÌÅÍ È®ÀÎ
+		// ì…ë ¥ íŒŒë¼ë¯¸í„° í™•ì¸
 		if (args.length != 2) {
 			System.err
 					.println("Usage: SingleFileWriteRead <filename> <contents>");
@@ -16,22 +16,22 @@ public class SingleFileWriteRead {
 		}
 
 		try {
-			// ÆÄÀÏ ½Ã½ºÅÛ Á¦¾î °´Ã¼ »ı¼º
+			// íŒŒì¼ ì‹œìŠ¤í…œ ì œì–´ ê°ì²´ ìƒì„±
 			Configuration conf = new Configuration();
 			FileSystem hdfs = FileSystem.get(conf);
 
-			// °æ·Î Ã¼Å©
+			// ê²½ë¡œ ì²´í¬
 			Path path = new Path(args[0]);
 			if (hdfs.exists(path)) {
 				hdfs.delete(path, true);
 			}
 
-			// ÆÄÀÏ ÀúÀå
+			// íŒŒì¼ ì €ì¥
 			FSDataOutputStream outStream = hdfs.create(path);
 			outStream.writeUTF(args[1]);
 			outStream.close();
 
-			// ÆÄÀÏ Ãâ·Â
+			// íŒŒì¼ ì¶œë ¥
 			FSDataInputStream inputStream = hdfs.open(path);
 			String inputString = inputStream.readUTF();
 			inputStream.close();
