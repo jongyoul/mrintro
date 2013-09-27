@@ -1,0 +1,15 @@
+// WordCount 예제
+hadoop fs -rm -r WordCount
+hadoop jar build/libs/mrintro.jar wikibooks.hadoop.chapter04.WordCount input.txt WordCount
+
+// Combiner 예제
+// 시간 오래 걸리는 것
+hadoop fs -rm -r WordCount
+hadoop jar build/libs/mrintro.jar wikibooks.hadoop.chapter04.WordCount input WordCount
+// 시간 얼마 안걸리는 것
+hadoop fs -rm -r WordCountWithCombiner
+hadoop jar build/libs/mrintro.jar wikibooks.hadoop.chapter04.WordCountWithCombiner input WordCountWithCombiner
+
+// Streaming 예제
+hadoop fs -rm -r streaming
+hadoop jar ~/local/src/hadoop-2.0.0-mr1-cdh4.2.0/hadoop-streaming-2.0.0-mr1-cdh4.2.0.jar -file src/main/python/mapper.py -mapper src/main/python/mapper.py -file src/main/python/reducer.py -reducer src/main/python/reducer.py -input input.txt -output streaming
