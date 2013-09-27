@@ -1,0 +1,33 @@
+Improving the Big Data Toolkit 
+By STEVE LOHR
+Open source software tends to march into the marketplace step by step, a quiet but steady strategy compared with the grand marketing events of the commercial software world. And Hadoop, the bedrock software of the fast-growing Big Data business, is on the march.
+
+Hadoop allows for relatively inexpensive data analysis, and the next generation will make that analysis possible across many thousands of computers. Hadoop 2.0, as it is known, was released for testing last month and the “general availability” release is planned for October.
+
+Doug Cutting, one of Hadoop's creators, in 2009. The project was named after the toy elephant of Mr. Cutting’s son.Peter DaSilva for The New York Times Doug Cutting, one of Hadoop’s creators, in 2009. The project was named after the toy elephant of Mr. Cutting’s son.
+Hadoop 2.0, said Merv Adrian, an analyst at Gartner, is “an important step,” making the technology “a far more versatile data operating environment.” The new version of Hadoop, he said, can handle larger data sets faster than its predecessor and it opens the door to analyzing data in real-time streams. So far, Hadoop has been used mostly to divvy up huge sets of data for analysis, but only in batches, not streams. The new Hadoop has also been tweaked to work more easily with traditional database tools, like SQL.
+
+Hadoop 2.0, Mr. Adrian said, was built to include “requirements for the commercial mainstream.” Historically, Hadoop’s most avid users were Internet companies like Yahoo, Facebook and Amazon.
+
+Hadoop 2.0 has been in the works for years, with many programmers designing, refining, testing and debuging the code — the open-source development model. And the history of Hadoop itself is a neat technology tale of sharing, failure, persistence and serendipity. Hadoop traces its origins to research papers published by Google. Hadoop’s creators, Doug Cutting and Mike Cafarella, integrated those concepts into their own code. The project was named after the toy elephant of Mr. Cutting’s son and was originally meant as a tool for Nutch, an open-source search engine.
+
+Today, corporations in many industries are trying to find cost-cutting or sales-improving insights in sensor, Web and social media data. “Everybody has the amount of data Yahoo and Google did five years ago,” said Arun Murthy, who is overseeing the development of Hadoop 2.0 as its release manager in the Apache Software Foundation.
+
+Mr. Murthy is also a co-founder of Hortonworks, a start-up that distributes and provides technical support for Hadoop to companies. Hortonworks is one of a handful of Hadoop distributors, each with its own business model for making money off of the open-source software, including Cloudera and MapR Technologies. Cloudera, which Mr. Cutting helped start, is considered furthest along as a business, with about $100 million in yearly revenue, analysts estimate.
+
+Whether one of these companies will emerge as a clear winner in the emerging Hadoop marketplace is uncertain. The much-mentioned goal is to follow the path of Red Hat, the leading distributor of the Linux operating system, which left its early rivals behind in another open-source software competition.
+
+But analysts say the situation may well be more fluid in the Hadoop marketplace. Hadoop uses a more permissive open-source license than Linux, allowing for companies to mix additional features into Hadoop of their own choosing. And large technology companies like I.B.M. offer products using Hadoop, not just start-ups.
+
+“There are different elements in these distributions,” Mr. Adrian said. “And the question for corporate customers is, Who am I going to place my bet with?”
+
+Vibrant competition and uncertainty are hallmarks of a young, fast-growing market. But it may also hold off investment by companies who are wavering about embarking on advanced data analysis projects.
+
+In a survey of 720 companies in June, Gartner found that 64 percent were investing in or plan to invest in Big Data projects within the next two years. That is an increase from 58 percent last year.
+
+Still, 31 percent of the companies surveyed said they had “no plans at this time” to make Big Data investments. And that compares with 30 percent of the companies that have actually made Big Data investments, as opposed to those who plan to do so.
+
+Those results suggest that so far, many companies are taking a prove-it stance rather than plunging in to the Big Data game.
+
+ 
+

@@ -1,14 +1,22 @@
-// WordCount 예제
+// WordCountMapOnly 예제
+hadoop fs -rm -r WordCountMapOnly
+hadoop jar build/libs/mrintro.jar wikibooks.hadoop.chapter04.WordCountMapOnly 1 WordCountMapOnly
+
+// WordCount 예제 1
 hadoop fs -rm -r WordCount
-hadoop jar build/libs/mrintro.jar wikibooks.hadoop.chapter04.WordCount input.txt WordCount
+hadoop jar build/libs/mrintro.jar wikibooks.hadoop.chapter04.WordCount 1 WordCount
+
+// WordCount 예제 2
+hadoop fs -rm -r WordCountLarge
+hadoop jar build/libs/mrintro.jar wikibooks.hadoop.chapter04.WordCount input.txt WordCountLarge
 
 // Combiner 예제
 // 시간 오래 걸리는 것
 hadoop fs -rm -r WordCount
-hadoop jar build/libs/mrintro.jar wikibooks.hadoop.chapter04.WordCount input WordCount
+hadoop jar build/libs/mrintro.jar wikibooks.hadoop.chapter04.WordCount input.txt WordCount
 // 시간 얼마 안걸리는 것
 hadoop fs -rm -r WordCountWithCombiner
-hadoop jar build/libs/mrintro.jar wikibooks.hadoop.chapter04.WordCountWithCombiner input WordCountWithCombiner
+hadoop jar build/libs/mrintro.jar wikibooks.hadoop.chapter04.WordCountWithCombiner input.txt WordCountWithCombiner
 
 // Streaming 예제
 hadoop fs -rm -r streaming
